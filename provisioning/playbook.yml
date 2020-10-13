@@ -1,0 +1,5 @@
+---
+- name: check node connections
+  hosts: all
+  tasks:
+  - action: ping
