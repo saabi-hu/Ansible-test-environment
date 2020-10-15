@@ -4,12 +4,9 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "centos/8"
-  # use host-only network
-  # config.vm.network "private_network", type: "dhcp", virtualbox_intnet: "ansible"
-  # or use the public network to reach the servers from outside
-  config.vm.network "public_network"
+  config.vm.network "private_network", type: "dhcp", virtualbox_intnet: "ansible"
 
-  (0..0).each do |i|
+  (0..2).each do |i|
     config.vm.define "node-#{i}" do |node|
       node.vm.hostname = "node-#{i}"
       node.vm.provision :file, source: "provisioning/id_rsa.pub", destination: "~/.ssh/master_id_rsa.pub"
